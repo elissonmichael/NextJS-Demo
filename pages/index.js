@@ -26,13 +26,11 @@ export default function Home(props) {
   )
 }
 
-export async function getStaticProps() {
-  const res = await fetch(`https://notice-api.herokuapp.com/notices`);
-  const data = await res.json();
+export async function getServerSideProps() {
+  const request = await fetch(`https://notice-api.herokuapp.com/notices`);
+  const notices = await request.json();
 
   return {
-    props: {
-      notices: data
-    }
+    props: { notices }
   }
 }
