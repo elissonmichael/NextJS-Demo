@@ -1,13 +1,16 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import dynamic from 'next/dynamic';
+
+const M = dynamic(
+  () => import('materialize-css/dist/js/materialize.min.js').then((mod) => mod.AutoInit()),
+  { ssr: false }
+)
 
 export default function Home(props) {
+
   return (
-    <div>
-      <Head>
-        <title>Notices</title>
-      </Head>
-      <main className={styles.main}>
+    <div className="container">
+      <M />
+      <main>
       <h1> Notices </h1>
         {
           props.notices.map(notice =>
