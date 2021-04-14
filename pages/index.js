@@ -28,7 +28,7 @@ export default function Home(props) {
 }
 
 export async function getStaticProps() {
-  const res = await fetch(`https://notice-api.herokuapp.com/notices`);
+  const res = await fetch(`http://localhost:8080/notices`);
   const data = await res.json();
 
   return {
