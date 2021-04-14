@@ -1,5 +1,4 @@
 import Head from 'next/head'
-import fetch from 'isomorphic-unfetch'
 import styles from '../styles/Home.module.css'
 
 export default function Home(props) {
@@ -28,7 +27,7 @@ export default function Home(props) {
 }
 
 export async function getStaticProps() {
-  const res = await fetch(`http://localhost:8080/notices`);
+  const res = await fetch(`https://notice-api.herokuapp.com/notices`);
   const data = await res.json();
 
   return {
