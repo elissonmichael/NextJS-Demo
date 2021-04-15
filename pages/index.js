@@ -1,14 +1,10 @@
 import Link from 'next/link';
+import Title from '../components/Title';
 
 export default function Home(props) {
   return (
     <>
-    <div className='row center'>
-      <div className='col s12'>
-        <h5 className='header grey-text text-darken-1'> Notices </h5>
-      </div>
-    </div>
-    <div className='divider'></div>
+    <Title> Notices </Title>
     <div className='row'>
       <div className='input-field col m4 offset-m8'>
         <Link href='notices/new'>
