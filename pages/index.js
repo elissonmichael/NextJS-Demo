@@ -29,7 +29,7 @@ export default function Home(props) {
 }
 
 export async function getServerSideProps() {
-  const request = await fetch(`https://notice-api.herokuapp.com/notices`);
+  const request = await fetch(process.env.API_URL);
   const notices = await request.json();
 
   return {
