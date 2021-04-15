@@ -8,24 +8,27 @@ const M = dynamic(
 export default function Home(props) {
 
   return (
-    <div className="container">
+    <main className="container">
       <M />
-      <main>
-      <h1> Notices </h1>
-        {
-          props.notices.map(notice =>
-            <>
-              <h3>
-                { notice.title }
-              </h3>
-              <p>
-                { notice.description }
-              </p>
-            </>
-          )
-        }
-      </main>
-    </div>
+      <div className='row center'>
+        <div className='col s12'>
+          <h5 className='header grey-text text-darken-1'> Notices </h5>
+        </div>
+      </div>
+      <div className='divider'></div>
+      <ul class="collapsible">
+      {
+        props.notices.map(notice =>
+          <li>
+            <div class="collapsible-header">
+              <b> ID: { notice.id } </b> <i class="material-icons">swap_vert</i>{ notice.title }
+            </div>
+            <div class="collapsible-body"><span>{ notice.description }</span></div>
+          </li>
+        )
+      }
+      </ul>
+    </main>
   )
 }
 
