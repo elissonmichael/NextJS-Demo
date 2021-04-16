@@ -1,7 +1,13 @@
 import Link from 'next/link';
 import Title from '../components/Title';
+import { useEffect } from 'react'
 
 export default function Home(props) {
+  useEffect(() => {
+    const elems = document.querySelectorAll('.collapsible');
+    const instances = M.Collapsible.init(elems);
+  }, [])
+
   return (
     <>
     <Title> Notices </Title>
