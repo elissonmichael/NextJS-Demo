@@ -41,6 +41,11 @@ export default function Home({ notices }) {
                   <td> {notice.id} </td>
                   <td> {notice.title} </td>
                   <td>
+                    <Link href={`/notices/${encodeURIComponent(notice.id)}`}>
+                      <a>
+                        <i className="material-icons">remove_red_eye</i>
+                      </a>
+                    </Link>
                     <Link href={`/notices/destroy/${encodeURIComponent(notice.id)}`} replace scroll={false}>
                       <a>
                         <i className="material-icons">delete</i>

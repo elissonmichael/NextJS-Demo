@@ -1,0 +1,16 @@
+nav.clean {
+  background: none;
+  box-shadow: none;
+}
+
+a.breadcrumb {
+  color: #757575;
+}
+
+a.breadcrumb::before {
+  color: #757575;
+}
+
+a.breadcrumb:last-child {
+  color: #9e9e9e;
+}
