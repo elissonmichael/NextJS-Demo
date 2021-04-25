@@ -46,7 +46,7 @@ export default function Home({ notices }) {
                         <i className="material-icons">remove_red_eye</i>
                       </a>
                     </Link>
-                    <Link href={`/notices/destroy/${encodeURIComponent(notice.id)}`} replace scroll={false}>
+                    <Link href={`/notices/${encodeURIComponent(notice.id)}/destroy`}>
                       <a>
                         <i className="material-icons">delete</i>
                       </a>
