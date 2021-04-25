@@ -39,7 +39,7 @@ export default function ShowNotice(props) {
               </a>
             </Link>
           </li>
-          <li className="divider" tabindex="-1"></li>
+          <li className="divider" tabIndex="-1"></li>
           <li>
             <Link href={`/notices/${encodeURIComponent(props.notice.id)}/destroy`}>
               <a>

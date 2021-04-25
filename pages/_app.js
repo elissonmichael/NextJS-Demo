@@ -1,6 +1,20 @@
+import Router from "next/dist/next-server/lib/router/router";
 import Head from "next/head";
-import dynamic from 'next/dynamic';
-import '../styles/custom_materialize.css'
+import '../styles/custom_materialize.css';
+import Nprogress from 'nprogress';
+import 'nprogress/nprogress.css';
+
+Router.events.on('routeChangeStart', () => {
+  Nprogress.start()
+})
+
+Router.events.on('routeChangeComplete', () => {
+  Nprogress.done()
+})
+
+Router.events.on('routeChangeError', () => {
+  Nprogress.done()
+})
 
 // This default export is required in a new `pages/_app.js` file.
 export default function MyApp({ Component, pageProps }) {
