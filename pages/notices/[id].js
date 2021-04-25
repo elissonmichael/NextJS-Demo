@@ -1,6 +1,13 @@
 import Title from '../../components/Title'
+import Link from 'next/link'
+import { useEffect } from 'react'
 
 export default function ShowNotice(props) {
+  useEffect(() => {
+    const elems = document.querySelectorAll('.dropdown-trigger');
+    const instances = M.Dropdown.init(elems, { coverTrigger: false });
+  }, [])
+
   return (
     <>
     <nav className='clean'>
@@ -22,6 +29,25 @@ export default function ShowNotice(props) {
         <p> <b>Title:   </b> {props.notice.title} </p>
         <p> <b>Status:  </b> Sent </p>
       </div>
+        <a className='dropdown-trigger btn' href='#' data-target='dropdown'>Notice Options</a>
+
+        <ul id='dropdown' className='dropdown-content'>
+          <li>
+            <Link href={`/notices/${encodeURIComponent(props.notice.id)}/edit`}>
+              <a>
+                <i className="material-icons">edit</i> Edit
+              </a>
+            </Link>
+          </li>
+          <li className="divider" tabindex="-1"></li>
+          <li>
+            <Link href={`/notices/${encodeURIComponent(props.notice.id)}/destroy`}>
+              <a>
+                <i className="material-icons">delete</i> Delete
+              </a>
+            </Link>
+          </li>
+        </ul>
     </div>
     <div className='row'>
       <h6>Description</h6>
