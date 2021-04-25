@@ -7,7 +7,7 @@ export default function NoticeForm({ onSubmit, notice }) {
 
   return (
     <form className="col s12" onSubmit={handleSubmit(onSubmit)}>
-      <input {...register('id', { required: true })} id="id" type="hidden" defaultValue={notice.id}/>
+      <input {...register('id')} id="id" type="hidden" defaultValue={ notice.id }/>
       <div className="row">
         <div className="input-field col s12">
           <input {...register('title', { required: true })} id="title" type="text" className="validate" defaultValue={ notice.title } autoFocus/>

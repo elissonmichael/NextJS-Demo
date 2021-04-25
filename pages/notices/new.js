@@ -27,8 +27,8 @@ export default function NoticeNew(props) {
   )
 };
 
-export async function getServerSideProps({ query }) {
-  const notice = { title: '', description: '' }
+export async function getServerSideProps() {
+  const notice = { id: '', title: '', description: '' }
 
   return {
     props: { notice }
