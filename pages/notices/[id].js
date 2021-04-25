@@ -1,16 +1,15 @@
 import Title from '../../components/Title'
-import { useRouter } from 'next/router'
 
 export default function ShowNotice(props) {
   return (
     <>
     <nav className='clean'>
-      <div class="nav-wrapper">
-        <div class="col s12">
-          <a href="/" class="breadcrumb">
+      <div className="nav-wrapper">
+        <div className="col s12">
+          <a href="/" className="breadcrumb">
             Notices
           </a>
-          <a href="#!" class="breadcrumb">
+          <a href="#!" className="breadcrumb">
             Notice ID {props.notice.id}
           </a>
         </div>
@@ -20,15 +19,16 @@ export default function ShowNotice(props) {
     <div className='row'>
       <div className='col s12 m6'>
         <p> <b>ID:      </b> { props.notice.id } </p>
-        <p> <b>Title:      </b> { props.notice.title } </p>
+        <p> <b>Title:   </b> {props.notice.title} </p>
+        <p> <b>Status:  </b> Sent </p>
       </div>
     </div>
-    <div class='row'>
+    <div className='row'>
       <h6>Description</h6>
-      <div class='divider'></div>
-      <div class='col s12'>
+      <div className='divider'></div>
+      <div className='col s12'>
         <p>
-          { props.notice.title }
+          { props.notice.description }
         </p>
       </div>
     </div>

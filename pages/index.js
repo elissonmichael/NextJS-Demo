@@ -1,13 +1,7 @@
 import Link from 'next/link';
 import Title from '../components/Title';
 
-function deleteNotice(id) {
-  console.log(id);
-
-}
-
 export default function Home({ notices }) {
-
   return (
     <>
     <Title> Notices </Title>
@@ -44,6 +38,11 @@ export default function Home({ notices }) {
                     <Link href={`/notices/${encodeURIComponent(notice.id)}`}>
                       <a>
                         <i className="material-icons">remove_red_eye</i>
+                      </a>
+                    </Link>
+                    <Link href={`/notices/${encodeURIComponent(notice.id)}/edit`}>
+                      <a>
+                        <i className="material-icons">edit</i>
                       </a>
                     </Link>
                     <Link href={`/notices/${encodeURIComponent(notice.id)}/destroy`}>

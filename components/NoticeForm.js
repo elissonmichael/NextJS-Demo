@@ -2,14 +2,15 @@ import Link from 'next/link';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 
-export default function NoticeForm({onSubmit}) {
+export default function NoticeForm({ onSubmit, notice }) {
   const { register, handleSubmit, formState: { errors } } = useForm();
 
   return (
     <form className="col s12" onSubmit={handleSubmit(onSubmit)}>
+      <input {...register('id', { required: true })} id="id" type="hidden" defaultValue={notice.id}/>
       <div className="row">
         <div className="input-field col s12">
-          <input {...register('title', { required: true })} id="title" type="text" className="validate"/>
+          <input {...register('title', { required: true })} id="title" type="text" className="validate" defaultValue={ notice.title } autoFocus/>
           <label htmlFor="title">Title</label>
           { errors.title &&
             <span className="helper-text" data-error="wrong">Title can't be blank</span>
@@ -18,7 +19,7 @@ export default function NoticeForm({onSubmit}) {
       </div>
       <div className="row">
         <div className="input-field col s12">
-          <textarea {...register('description', { required: true })} id="description" className="materialize-textarea"></textarea>
+          <textarea {...register('description', { required: true })} id="description" className="materialize-textarea" defaultValue={ notice.description }></textarea>
           <label htmlFor="description">Description</label>
           { errors.description &&
             <span className="helper-text" data-error="wrong">Description can't be blank</span>

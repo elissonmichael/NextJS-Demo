@@ -17,12 +17,20 @@ function createNotice(data) {
   });
 }
 
-export default function NoticeNew() {
+export default function NoticeNew(props) {
 
   return (
     <>
       <Title> Register Notice </Title>
-      <NoticeForm onSubmit={createNotice}/>
+      <NoticeForm onSubmit={createNotice} notice={props.notice} />
     </>
   )
 };
+
+export async function getServerSideProps({ query }) {
+  const notice = { title: '', description: '' }
+
+  return {
+    props: { notice }
+  }
+}
