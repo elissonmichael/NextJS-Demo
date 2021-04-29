@@ -1,10 +1,7 @@
-import { useRouter } from 'next/router'
 import Router from 'next/router'
 
-export default function DestroyNotice() {
-  const router = useRouter()
-  const { id } = router.query
-  fetch(`${process.env.NEXT_PUBLIC_API_URL}/${id}`, { method: 'delete' })
+export default function DestroyNotice(props) {
+  fetch(`${process.env.NEXT_PUBLIC_API_URL}/${props.id}`, { method: 'delete' })
     .then(response => {
       Router.push('/')
     })
@@ -14,3 +11,9 @@ export default function DestroyNotice() {
 
   return null;
 };
+
+export async function getServerSideProps({ query }) {
+  return {
+    props: { id: query.id }
+  }
+}
