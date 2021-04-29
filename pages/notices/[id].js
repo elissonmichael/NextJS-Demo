@@ -1,8 +1,15 @@
 import Title from '../../components/Title'
 import Link from 'next/link'
 import { useEffect } from 'react'
+import { useRouter } from 'next/router'
 
 export default function Notice({ notice }) {
+  const router = useRouter();
+
+  if (router.isFallback) {
+    return <Title>Loading...</Title>
+  }
+
   useEffect(() => {
     const elems = document.querySelectorAll('.dropdown-trigger');
     const instances = M.Dropdown.init(elems, { coverTrigger: false });
@@ -69,7 +76,7 @@ export async function getStaticPaths() {
     params: { id: String(notice.id) },
   }))
 
-  return { paths, fallback: false }
+  return { paths, fallback: true }
 }
 
 export async function getStaticProps({ params }) {
