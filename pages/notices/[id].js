@@ -2,7 +2,7 @@ import Title from '../../components/Title'
 import Link from 'next/link'
 import { useEffect } from 'react'
 
-export default function ShowNotice(props) {
+export default function Notice({ notice }) {
   useEffect(() => {
     const elems = document.querySelectorAll('.dropdown-trigger');
     const instances = M.Dropdown.init(elems, { coverTrigger: false });
@@ -17,23 +17,23 @@ export default function ShowNotice(props) {
             Notices
           </a>
           <a href="#!" className="breadcrumb">
-            Notice ID {props.notice.id}
+            Notice ID { notice.id }
           </a>
         </div>
       </div>
     </nav>
-    <Title>Notice ID { props.notice.id }</Title>
+    <Title>Notice ID { notice.id }</Title>
     <div className='row'>
       <div className='col s12 m6'>
-        <p> <b>ID:      </b> { props.notice.id } </p>
-        <p> <b>Title:   </b> {props.notice.title} </p>
+        <p> <b>ID:      </b> { notice.id } </p>
+        <p> <b>Title:   </b> { notice.title } </p>
         <p> <b>Status:  </b> Sent </p>
       </div>
         <a className='dropdown-trigger btn' href='#' data-target='dropdown'>Notice Options</a>
 
         <ul id='dropdown' className='dropdown-content'>
           <li>
-            <Link href={`/notices/${encodeURIComponent(props.notice.id)}/edit`}>
+            <Link href={`/notices/${encodeURIComponent(notice.id)}/edit`}>
               <a>
                 <i className="material-icons">edit</i> Edit
               </a>
@@ -41,7 +41,7 @@ export default function ShowNotice(props) {
           </li>
           <li className="divider" tabIndex="-1"></li>
           <li>
-            <Link href={`/notices/${encodeURIComponent(props.notice.id)}/destroy`}>
+            <Link href={`/notices/${encodeURIComponent(notice.id)}/destroy`}>
               <a>
                 <i className="material-icons">delete</i> Delete
               </a>
@@ -54,7 +54,7 @@ export default function ShowNotice(props) {
       <div className='divider'></div>
       <div className='col s12'>
         <p>
-          { props.notice.description }
+          { notice.description }
         </p>
       </div>
     </div>
@@ -62,11 +62,24 @@ export default function ShowNotice(props) {
   )
 }
 
-export async function getServerSideProps({ query }) {
-  const request = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/${query.id}`);
+export async function getStaticPaths() {
+  const request = await fetch(process.env.NEXT_PUBLIC_API_URL);
+  const notices = await request.json();
+  const paths = notices.map((notice) => ({
+    params: { id: String(notice.id) },
+  }))
+
+  return { paths, fallback: false }
+}
+
+export async function getStaticProps({ params }) {
+  const request = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/${params.id}`);
   const notice = await request.json();
 
   return {
-    props: { notice }
+    props: {
+      notice,
+    },
+    revalidate: 1,
   }
 }
